@@ -2,20 +2,48 @@
 using phonestar_calllog;
 using System.Text.Json;
 
-Console.WriteLine("Hello, World!");
+Console.WriteLine("phonstar.ch - get call log..");
 
 HttpClient client = new HttpClient();
 
-var streamTask = client.GetStreamAsync("https://my.phonestar.ch/api/login?api_token=igpYoQkmbRvbANaPU4TWxXE9hzp$2b$12$Bkg2kYhaSvEOSznn7L0doO");
-var loginResult = await JsonSerializer.DeserializeAsync<LoginResult>(await streamTask);
+try
+{
+    Console.WriteLine("Please enter api_token:");
+    string api_token = Console.ReadLine();
+    Console.WriteLine($"api_token provided: {api_token}");
 
-Console.WriteLine($"SessionId: {loginResult.session_id}");
+    string sLoginRequest = $"https://my.phonestar.ch/api/login?api_token={api_token}";
+    Console.WriteLine($"Login request: {sLoginRequest}");
 
-var req = $"https://my.phonestar.ch/get_cdrs?start=2022-01-01%2010:00:00&end=2022-06-01%2010:00:00&session_id={loginResult.session_id}";
+    var streamTask = client.GetStreamAsync(sLoginRequest);
+    var loginResult = await JsonSerializer.DeserializeAsync<LoginResult>(await streamTask);
 
-Console.WriteLine($"Requesting URL: {req}");
+    Console.WriteLine($"SessionId: {loginResult.session_id}");
 
-var getStreamCallLog = client.GetStreamAsync(req);
-var callLogResult = await JsonSerializer.DeserializeAsync<CallLogResult> (await getStreamCallLog);
+    Console.WriteLine($"Enter session_id (if you want to override {loginResult.session_id} - otherwise leave blank/hit enter..");
+    string sessionIdOverride = Console.ReadLine();
 
-Console.ReadLine();
+    string reqGetCdrs = String.Empty;
+
+    if (sessionIdOverride.Length>10)
+    {
+         reqGetCdrs = $"https://my.phonestar.ch/get_cdrs?start=2022-01-01%2010:00:00&end=2022-06-01%2010:00:00&session_id={sessionIdOverride}";
+    }
+    else
+    {
+         reqGetCdrs = $"https://my.phonestar.ch/get_cdrs?start=2022-01-01%2010:00:00&end=2022-06-01%2010:00:00&session_id={loginResult.session_id}";
+    }
+
+    Console.WriteLine($"Requesting URL: {reqGetCdrs}");
+
+    var getStreamCallLog = client.GetStreamAsync(reqGetCdrs);
+    var callLogResult = await JsonSerializer.DeserializeAsync<CallLogResult>(await getStreamCallLog);
+
+    Console.ReadLine();
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"ERROR! -> {ex.Message}");
+}
+
+
