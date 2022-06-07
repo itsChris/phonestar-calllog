@@ -1,4 +1,4 @@
-# phonestar-calllog
+# phonestar-call-log
 Phonestar.ch - Get Call Log Sample App
 
 The api_token needs to be configured in the user / customer portal:
