@@ -2,7 +2,11 @@
 {
     public class CallLogResult
     {
+        public CallLogResult()
+        {
+            data = new List<CallLogEntry>();
+        }
         public string status { get; set; }
-        public List<CallLogEntry> callLogEntries { get; set; }
+        public List<CallLogEntry> data { get; set; }
     }
 }
