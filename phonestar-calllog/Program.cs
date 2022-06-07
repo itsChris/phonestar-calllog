@@ -39,6 +39,11 @@ try
     var getStreamCallLog = client.GetStreamAsync(reqGetCdrs);
     var callLogResult = await JsonSerializer.DeserializeAsync<CallLogResult>(await getStreamCallLog);
 
+    foreach (CallLogEntry callLogEntry in callLogResult.data)
+    {
+        Console.WriteLine($"On {callLogEntry.connected} caller {callLogEntry.caller} called {callLogEntry.callee} with number {callLogEntry.number} for {callLogEntry.billed_duration} which caused costs of {callLogEntry.cost} ");
+    }
+
     Console.ReadLine();
 }
 catch (Exception ex)
