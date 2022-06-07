@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32526.322
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "phonestar-calllog", "phonestar-calllog\phonestar-calllog.csproj", "{DBE10EDD-71D7-413D-A504-96C0E01053FD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DBE10EDD-71D7-413D-A504-96C0E01053FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBE10EDD-71D7-413D-A504-96C0E01053FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBE10EDD-71D7-413D-A504-96C0E01053FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBE10EDD-71D7-413D-A504-96C0E01053FD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1E00F6EB-81FD-4C42-BD1C-00621400A8AA}
+	EndGlobalSection
+EndGlobal
